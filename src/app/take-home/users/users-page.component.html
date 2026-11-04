@@ -1,0 +1,52 @@
+<section class="page take-home-page">
+  <header class="page-header">
+    <span class="eyebrow">Bloque 4 · 30 puntos</span>
+    <h1>Ejercicio de casa: gestión de usuarios</h1>
+    <p class="lead">
+      Completa un CRUD en memoria con listado, alta, edición, eliminación, validación y pruebas. Prima una
+      solución pequeña, clara y defendible.
+    </p>
+    <div class="notice notice--warning">
+      El código actual es solo un punto de partida compilable. Puedes cambiar la estructura, crear
+      componentes o sustituir el store si justificas la decisión. Consulta el enunciado completo en
+      <code>docs/05_EJERCICIO_CASA.md</code>.
+    </div>
+  </header>
+
+  <div class="grid grid--2">
+    <article class="card">
+      <span class="eyebrow">Estado inicial</span>
+      <div class="list-heading">
+        <h2>Usuarios</h2>
+        <span class="pill">{{ total() }} registros</span>
+      </div>
+
+      <ul class="starter-list">
+        @for (user of users(); track user.id) {
+          <li>
+            <div>
+              <strong>{{ user.name }}</strong>
+              <span>{{ user.email }}</span>
+            </div>
+            <span class="pill">{{ user.role }}</span>
+          </li>
+        }
+      </ul>
+    </article>
+
+    <article class="card card--subtle">
+      <span class="eyebrow">Tu implementación</span>
+      <h2>Requisitos mínimos</h2>
+      <ol class="checklist">
+        <li>Mostrar usuarios e identificar cada fila de forma estable.</li>
+        <li>Añadir usuarios mediante un formulario validado.</li>
+        <li>Editar y reflejar cambios en el listado.</li>
+        <li>Eliminar con una interacción comprensible.</li>
+        <li>Añadir al menos una prueba unitaria relevante.</li>
+      </ol>
+      <p class="muted">
+        No se exige backend, librería visual, gestión global compleja ni una arquitectura sobredimensionada.
+      </p>
+    </article>
+  </div>
+</section>

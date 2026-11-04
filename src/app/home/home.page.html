@@ -1,0 +1,81 @@
+<section class="page">
+  <header class="page-header hero">
+    <div>
+      <span class="eyebrow">Certificación Angular · Dos jornadas</span>
+      <h1>Angular general, criterio y práctica.</h1>
+      <p class="lead">
+        Día 1 para la parte teórica; entre jornadas se realiza el ejercicio de casa; Día 2 para live coding y revisión de la entrega.
+      </p>
+    </div>
+    <div class="score-ring" aria-label="Puntuación total: 100 puntos">
+      <strong>100</strong>
+      <span>puntos</span>
+    </div>
+  </header>
+
+  @if (isTeacher) {
+    <div class="notice notice--success">
+      Versión profesor: contiene respuestas, soluciones, rúbrica y material de activación del Día 2.
+    </div>
+  } @else {
+    <div class="notice">
+      Esta es la copia inicial del alumno. Los bugs de live coding se entregarán al comenzar el Día 2.
+    </div>
+  }
+
+  <div class="grid grid--4 section-grid">
+    <article class="card section-card">
+      <span class="section-card__number">D1 · 01</span>
+      <h2>Test general</h2>
+      <p>20 preguntas de fundamentos, arquitectura y Angular moderno.</p>
+      <div class="meta-row">
+        <span class="pill">20 puntos</span>
+      </div>
+      <a class="button button--secondary" routerLink="/test-general">Abrir test</a>
+    </article>
+
+    <article class="card section-card">
+      <span class="section-card__number">D1 · 02</span>
+      <h2>Análisis de código</h2>
+      <p>10 fragmentos para detectar problemas y justificar la respuesta.</p>
+      <div class="meta-row">
+        <span class="pill">20 puntos</span>
+      </div>
+      <a class="button button--secondary" routerLink="/test-codigo">Abrir test</a>
+    </article>
+
+    <article class="card section-card">
+      <span class="section-card__number">Entre días</span>
+      <h2>Ejercicio de casa</h2>
+      <p>CRUD sencillo de usuarios con formulario, validación y testing.</p>
+      <div class="meta-row">
+        <span class="pill">30 puntos</span>
+      </div>
+      <a class="button button--secondary" routerLink="/ejercicio-casa">Abrir ejercicio</a>
+    </article>
+
+    <article class="card section-card">
+      <span class="section-card__number">D2</span>
+      <h2>Live coding + revisión</h2>
+      <p>Los tres bugs se entregarán en directo. Después se revisará el ejercicio de casa.</p>
+      <div class="meta-row">
+        <span class="pill">30 + 30 puntos</span>
+        <span class="pill">Día 2</span>
+      </div>
+      <span class="pill">Material bloqueado hasta la sesión</span>
+    </article>
+  </div>
+
+  <div class="grid grid--2">
+    <article class="card">
+      <span class="eyebrow">Día 2</span>
+      <h2>Primero live coding</h2>
+      <p>Los tres bugs se resuelven antes de recibir feedback sobre el ejercicio de casa.</p>
+    </article>
+    <article class="card">
+      <span class="eyebrow">Después</span>
+      <h2>Revisión de la entrega</h2>
+      <p>Se revisará el ejercicio de casa entregado.</p>
+    </article>
+  </div>
+</section>

@@ -1,0 +1,104 @@
+<section class="page assessment-page">
+  <header class="page-header">
+    <span class="eyebrow">Evaluación objetiva</span>
+    <h1>{{ title() }}</h1>
+    <p class="lead">{{ description() }}</p>
+
+    <div class="progress-block" aria-live="polite">
+      <div class="progress-label">
+        <strong>{{ answeredCount() }} / {{ questions().length }}</strong>
+        <span>{{ progress() }} % completado</span>
+      </div>
+      <div class="progress-track" aria-hidden="true">
+        <span [style.width.%]="progress()"></span>
+      </div>
+    </div>
+
+    @if (hasSolutions()) {
+      <div class="notice notice--success">
+        <strong>Versión del profesor.</strong> Se muestran la respuesta correcta y el razonamiento esperado.
+        Opciones acertadas al introducir una entrega: {{ correctOptionCount() }} / {{ questions().length }}.
+        En el test de código, la justificación se puntúa por separado.
+      </div>
+    } @else {
+      <div class="notice">
+        La aplicación no calcula ni revela la nota. Al terminar, descarga o copia las respuestas y
+        pégalas en <code>ENTREGA_ALUMNO.md</code>.
+      </div>
+    }
+  </header>
+
+  <div class="question-list">
+    @for (question of questions(); track question.id; let position = $index) {
+      <article class="question-card">
+        <header class="question-card__header">
+          <p class="question-label">Pregunta {{ position + 1 }}</p>
+          <h2>{{ question.prompt }}</h2>
+        </header>
+
+        @if (question.code) {
+          <pre><code>{{ question.code }}</code></pre>
+        }
+
+        <fieldset class="options">
+          <legend class="sr-only">Opciones de {{ question.id }}</legend>
+          @for (option of question.options; track option.id) {
+            <label
+              class="option"
+              [class.option--selected]="answerFor(question.id).option === option.id"
+              [class.option--correct]="hasSolutions() && isCorrect(question, option.id)"
+            >
+              <input
+                type="radio"
+                [name]="question.id"
+                [checked]="answerFor(question.id).option === option.id"
+                (change)="selectOption(question.id, option.id)"
+              />
+              <span class="option__letter">{{ option.id }}</span>
+              <span>{{ option.text }}</span>
+            </label>
+          }
+        </fieldset>
+
+        @if (requiresReason()) {
+          <label class="reason-field">
+            <span>Justificación breve</span>
+            <textarea
+              rows="3"
+              maxlength="500"
+              placeholder="Indica la causa y la corrección que aplicarías."
+              [value]="answerFor(question.id).reason ?? ''"
+              (input)="updateReason(question.id, $event)"
+            ></textarea>
+          </label>
+        }
+
+        @if (hasSolutions()) {
+          <aside class="solution">
+            <strong>Respuesta: {{ question.correctOption }}</strong>
+            <p>{{ question.explanation }}</p>
+          </aside>
+        }
+      </article>
+    }
+  </div>
+
+  <footer class="assessment-actions card">
+    <div>
+      <strong>Entrega</strong>
+      <p class="muted">Las selecciones quedan guardadas localmente en este navegador.</p>
+    </div>
+    <div class="button-row">
+      <button class="button button--secondary" type="button" (click)="reset()">Borrar</button>
+      <button class="button button--secondary" type="button" (click)="copyAnswers()">
+        Copiar respuestas
+      </button>
+      <button class="button" type="button" (click)="downloadAnswers()">
+        Descargar respuestas
+      </button>
+    </div>
+    @if (actionMessage()) {
+      <p class="action-message" aria-live="polite">{{ actionMessage() }}</p>
+    }
+  </footer>
+</section>

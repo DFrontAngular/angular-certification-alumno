@@ -1,0 +1,31 @@
+<header class="app-header">
+  <div class="app-header__inner">
+    <a class="brand" routerLink="/inicio" aria-label="Ir al inicio">
+      <span class="brand__mark">A</span>
+      <span>
+        <strong>Certificación Angular</strong>
+        <small>Dos jornadas · fundamentos + Angular moderno</small>
+      </span>
+    </a>
+
+    <span class="variant-badge" [class.variant-badge--teacher]="isTeacher">
+      {{ isTeacher ? 'Profesor · soluciones' : 'Alumno · Día 1' }}
+    </span>
+  </div>
+
+  <nav class="main-nav" aria-label="Navegación principal">
+    <a routerLink="/inicio" routerLinkActive="active">Inicio</a>
+    <a routerLink="/test-general" routerLinkActive="active">D1 · Test</a>
+    <a routerLink="/test-codigo" routerLinkActive="active">D1 · Código</a>
+    <a routerLink="/ejercicio-casa" routerLinkActive="active">Ejercicio de casa</a>
+  </nav>
+</header>
+
+<main class="app-main">
+  <router-outlet />
+</main>
+
+<footer class="app-footer">
+  <span>Angular · evaluación sobre 100 puntos</span>
+  <span>Día 2: live coding + revisión</span>
+</footer>
